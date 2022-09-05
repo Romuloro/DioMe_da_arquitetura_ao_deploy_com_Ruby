@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :restaurant do
-    name { "MyString" }
-    address { "MyText" }
+    name { FFaker::Company.name }
+    address { FFaker::AddressBR.full_address }
   end
 end
