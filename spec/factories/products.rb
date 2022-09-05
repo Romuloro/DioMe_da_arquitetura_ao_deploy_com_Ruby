@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :product do
-    name { "MyString" }
-    value { 1.5 }
-    restaurant { "MyString" }
+    name { FFaker::Product.product_name }
+    value { FFaker::Number.decimal }
+    restaurant { create :restaurant }
   end
 end
