@@ -2,7 +2,7 @@
 <p>Seja bem-vindo <%= @email %></p>
 
 <% if user_signed_in? %>
-  <% if user.restaurant? %>
+  <% if current_user.restaurant? %>
      <p> Your products, <%= current_user.restaurant.name %> </p>
     <table>
       <thead>
