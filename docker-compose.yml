@@ -1,0 +1,60 @@
+version: "3.9"
+services:
+  DioMe_da_arquitetura_ao_deploy_com_Ruby:
+    image: dio_ieat
+    build:
+      context: .
+    container_name: DioMe_da_arquitetura_ao_deploy_com_Ruby
+    hostname: DioMe_da_arquitetura_ao_deploy_com_Ruby
+    environment:
+      - RAILS_ENV=development
+      - DATABASE_HOST=postgres
+      - DATABASE_USERNAME=postgres
+      - DATABASE_PASSWORD=postgres
+    volumes:
+      - .:/DioMe_da_arquitetura_ao_deploy_com_Ruby:delegated
+      - /DioMe_da_arquitetura_ao_deploy_com_Ruby/node_modules
+      - gems:/home/DioMe_da_arquitetura_ao_deploy_com_Ruby:delegated
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+      - redis
+      - gems
+    networks:
+      - default
+
+  gems:
+    image: busybox:latest
+    volumes:
+      - /gems
+
+  postgres:
+    image: postgres:latest
+    container_name: DioMe_da_arquitetura_ao_deploy_com_Ruby-db
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+    volumes:
+      - pg-data:/var/lib/postgresql:delegated
+    ports:
+      - "5431:5432"
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6380:6379"
+
+networks:
+  default:
+    driver: bridge
+    name: DioMe_da_arquitetura_ao_deploy_com_Ruby
+
+volumes:
+  gems:
+  pg-data:
+  node_modules:
+
+
+
