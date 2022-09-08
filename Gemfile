@@ -13,6 +13,7 @@ gem "sprockets-rails"
 gem "pg", "~> 1.1"
 
 gem "devise"
+gem "sidekiq"
 
 
 # Use the Puma web server [https://github.com/puma/puma]
@@ -53,7 +54,7 @@ gem "bootsnap", require: false
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-
+  gem 'dotenv-rails'
   gem "pry"
   gem "rspec-rails", "~> 5.1.1"
   gem "ffaker"
