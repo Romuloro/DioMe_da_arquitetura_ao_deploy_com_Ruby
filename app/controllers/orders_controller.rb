@@ -6,6 +6,7 @@ class OrdersController < ApplicationController
 
     if @order.save
       flash[:notice] = "Order created with success"
+      RestaurantNotifierJob.perform_later(current_user.id)
     else
       flash[:alarm] = "Fail during order created"
     end
